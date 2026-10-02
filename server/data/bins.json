@@ -1,0 +1,376 @@
+[
+  {
+    "id": "BIN-001",
+    "location": "City Central Square - Main Fountain",
+    "zone": "Zone 1 - Civic Center",
+    "latitude": 28.6139,
+    "longitude": 77.209,
+    "fillLevel": 40,
+    "status": "partially_full",
+    "priority": "medium",
+    "capacityLiters": 120,
+    "batteryLevel": 96,
+    "deviceStatus": "online",
+    "lastCleaned": "2026-10-01T10:43:17.519Z",
+    "lastUpdated": "2026-10-02T12:45:47.254Z",
+    "fillHistory": [
+      {
+        "timestamp": "2026-10-01T12:43:17.519Z",
+        "level": 5
+      },
+      {
+        "timestamp": "2026-10-01T18:43:17.519Z",
+        "level": 14
+      },
+      {
+        "timestamp": "2026-10-02T00:43:17.519Z",
+        "level": 20
+      },
+      {
+        "timestamp": "2026-10-02T04:43:17.519Z",
+        "level": 25
+      },
+      {
+        "timestamp": "2026-10-02T12:45:42.775Z",
+        "level": 80
+      },
+      {
+        "timestamp": "2026-10-02T12:45:43.988Z",
+        "level": 40
+      },
+      {
+        "timestamp": "2026-10-02T12:45:44.622Z",
+        "level": 0
+      },
+      {
+        "timestamp": "2026-10-02T12:45:45.321Z",
+        "level": 80
+      },
+      {
+        "timestamp": "2026-10-02T12:45:45.653Z",
+        "level": 80
+      },
+      {
+        "timestamp": "2026-10-02T12:45:47.254Z",
+        "level": 40
+      }
+    ]
+  },
+  {
+    "id": "BIN-002",
+    "location": "Municipal Library Park - West Gate",
+    "zone": "Zone 2 - Education Hub",
+    "latitude": 28.6185,
+    "longitude": 77.214,
+    "fillLevel": 55,
+    "status": "partially_full",
+    "priority": "medium",
+    "capacityLiters": 100,
+    "batteryLevel": 88,
+    "deviceStatus": "online",
+    "lastCleaned": "2026-09-30T16:43:17.519Z",
+    "lastUpdated": "2026-10-02T12:43:24.321Z",
+    "fillHistory": [
+      {
+        "timestamp": "2026-10-01T04:43:17.519Z",
+        "level": 20
+      },
+      {
+        "timestamp": "2026-10-01T16:43:17.519Z",
+        "level": 38
+      },
+      {
+        "timestamp": "2026-10-02T04:43:17.519Z",
+        "level": 55
+      }
+    ]
+  },
+  {
+    "id": "BIN-003",
+    "location": "Metro Station North Exit - Bus Interchange",
+    "zone": "Zone 3 - Transit Corridor",
+    "latitude": 28.621,
+    "longitude": 77.205,
+    "fillLevel": 82,
+    "status": "cleaning_recommended",
+    "priority": "high",
+    "capacityLiters": 150,
+    "batteryLevel": 82,
+    "deviceStatus": "online",
+    "lastCleaned": "2026-09-30T04:43:17.519Z",
+    "lastUpdated": "2026-10-02T12:43:24.321Z",
+    "fillHistory": [
+      {
+        "timestamp": "2026-09-30T22:43:17.519Z",
+        "level": 40
+      },
+      {
+        "timestamp": "2026-10-01T14:43:17.519Z",
+        "level": 65
+      },
+      {
+        "timestamp": "2026-10-02T04:43:17.519Z",
+        "level": 82
+      }
+    ]
+  },
+  {
+    "id": "BIN-004",
+    "location": "Central Vegetable & Fruit Bazaar",
+    "zone": "Zone 1 - Civic Center",
+    "latitude": 28.61,
+    "longitude": 77.217,
+    "fillLevel": 0,
+    "status": "normal",
+    "priority": "low",
+    "capacityLiters": 200,
+    "batteryLevel": 79,
+    "deviceStatus": "online",
+    "lastCleaned": "2026-10-02T05:10:33.752Z",
+    "lastUpdated": "2026-10-02T12:43:24.322Z",
+    "fillHistory": [
+      {
+        "timestamp": "2026-10-01T04:43:17.519Z",
+        "level": 50
+      },
+      {
+        "timestamp": "2026-10-01T18:43:17.519Z",
+        "level": 75
+      },
+      {
+        "timestamp": "2026-10-02T04:43:17.519Z",
+        "level": 94
+      },
+      {
+        "timestamp": "2026-10-02T05:10:33.752Z",
+        "level": 0
+      }
+    ]
+  },
+  {
+    "id": "BIN-005",
+    "location": "City General Hospital - Emergency Walkway",
+    "zone": "Zone 4 - Healthcare District",
+    "latitude": 28.608,
+    "longitude": 77.202,
+    "fillLevel": 0,
+    "status": "normal",
+    "priority": "low",
+    "capacityLiters": 150,
+    "batteryLevel": 91,
+    "deviceStatus": "online",
+    "lastCleaned": "2026-10-02T12:45:00.604Z",
+    "lastUpdated": "2026-10-02T12:45:00.605Z",
+    "fillHistory": [
+      {
+        "timestamp": "2026-10-01T08:43:17.519Z",
+        "level": 60
+      },
+      {
+        "timestamp": "2026-10-01T20:43:17.519Z",
+        "level": 85
+      },
+      {
+        "timestamp": "2026-10-02T04:43:17.519Z",
+        "level": 100
+      },
+      {
+        "timestamp": "2026-10-02T12:44:59.739Z",
+        "level": 0
+      },
+      {
+        "timestamp": "2026-10-02T12:45:00.604Z",
+        "level": 0
+      }
+    ]
+  },
+  {
+    "id": "BIN-006",
+    "location": "Botanical Garden - East Pavilion",
+    "zone": "Zone 2 - Education Hub",
+    "latitude": 28.625,
+    "longitude": 77.22,
+    "fillLevel": 0,
+    "status": "normal",
+    "priority": "low",
+    "capacityLiters": 120,
+    "batteryLevel": 74,
+    "deviceStatus": "online",
+    "lastCleaned": "2026-10-02T05:10:09.736Z",
+    "lastUpdated": "2026-10-02T12:43:24.322Z",
+    "fillHistory": [
+      {
+        "timestamp": "2026-09-30T04:43:17.519Z",
+        "level": 25
+      },
+      {
+        "timestamp": "2026-10-02T04:43:17.519Z",
+        "level": 42
+      },
+      {
+        "timestamp": "2026-10-02T05:10:09.736Z",
+        "level": 0
+      }
+    ]
+  },
+  {
+    "id": "BIN-007",
+    "location": "Sports Stadium - Ticket Counter 3",
+    "zone": "Zone 5 - Sports Complex",
+    "latitude": 28.617,
+    "longitude": 77.228,
+    "fillLevel": 12,
+    "status": "normal",
+    "priority": "low",
+    "capacityLiters": 150,
+    "batteryLevel": 98,
+    "deviceStatus": "online",
+    "lastCleaned": "2026-10-01T18:43:17.519Z",
+    "lastUpdated": "2026-10-02T12:43:24.322Z",
+    "fillHistory": [
+      {
+        "timestamp": "2026-10-02T04:43:17.519Z",
+        "level": 12
+      }
+    ]
+  },
+  {
+    "id": "BIN-008",
+    "location": "Heritage Art Promenade - South Lane",
+    "zone": "Zone 1 - Civic Center",
+    "latitude": 28.605,
+    "longitude": 77.212,
+    "fillLevel": 0,
+    "status": "normal",
+    "priority": "low",
+    "capacityLiters": 100,
+    "batteryLevel": 95,
+    "deviceStatus": "online",
+    "lastCleaned": "2026-10-02T01:43:17.519Z",
+    "lastUpdated": "2026-10-02T12:43:24.322Z",
+    "fillHistory": [
+      {
+        "timestamp": "2026-10-02T04:43:17.519Z",
+        "level": 0
+      }
+    ]
+  },
+  {
+    "id": "BIN-009",
+    "location": "near metro gete no 2",
+    "zone": "Zone 2 - Education Hub",
+    "latitude": 28.615,
+    "longitude": 77.21,
+    "fillLevel": 0,
+    "status": "normal",
+    "priority": "low",
+    "capacityLiters": 120,
+    "batteryLevel": 100,
+    "deviceStatus": "online",
+    "lastCleaned": "2026-10-02T07:33:28.216Z",
+    "lastUpdated": "2026-10-02T12:43:24.322Z",
+    "fillHistory": [
+      {
+        "timestamp": "2026-10-02T07:33:28.216Z",
+        "level": 0
+      }
+    ]
+  },
+  {
+    "id": "BIN-010",
+    "location": "near metro gate no 3",
+    "zone": "Zone 3 - Transit Corridor",
+    "latitude": 28.615,
+    "longitude": 77.21,
+    "fillLevel": 21,
+    "status": "normal",
+    "priority": "low",
+    "capacityLiters": 120,
+    "batteryLevel": 100,
+    "deviceStatus": "online",
+    "lastCleaned": "2026-10-02T12:44:31.326Z",
+    "lastUpdated": "2026-10-02T12:45:56.344Z",
+    "fillHistory": [
+      {
+        "timestamp": "2026-10-02T12:45:55.694Z",
+        "level": 2
+      },
+      {
+        "timestamp": "2026-10-02T12:45:55.709Z",
+        "level": 3
+      },
+      {
+        "timestamp": "2026-10-02T12:45:55.744Z",
+        "level": 4
+      },
+      {
+        "timestamp": "2026-10-02T12:45:55.761Z",
+        "level": 5
+      },
+      {
+        "timestamp": "2026-10-02T12:45:55.794Z",
+        "level": 6
+      },
+      {
+        "timestamp": "2026-10-02T12:45:55.810Z",
+        "level": 7
+      },
+      {
+        "timestamp": "2026-10-02T12:45:55.844Z",
+        "level": 8
+      },
+      {
+        "timestamp": "2026-10-02T12:45:55.861Z",
+        "level": 9
+      },
+      {
+        "timestamp": "2026-10-02T12:45:55.877Z",
+        "level": 10
+      },
+      {
+        "timestamp": "2026-10-02T12:45:55.894Z",
+        "level": 11
+      },
+      {
+        "timestamp": "2026-10-02T12:45:55.910Z",
+        "level": 12
+      },
+      {
+        "timestamp": "2026-10-02T12:45:55.927Z",
+        "level": 13
+      },
+      {
+        "timestamp": "2026-10-02T12:45:55.960Z",
+        "level": 14
+      },
+      {
+        "timestamp": "2026-10-02T12:45:55.977Z",
+        "level": 15
+      },
+      {
+        "timestamp": "2026-10-02T12:45:56.027Z",
+        "level": 16
+      },
+      {
+        "timestamp": "2026-10-02T12:45:56.262Z",
+        "level": 17
+      },
+      {
+        "timestamp": "2026-10-02T12:45:56.278Z",
+        "level": 18
+      },
+      {
+        "timestamp": "2026-10-02T12:45:56.294Z",
+        "level": 19
+      },
+      {
+        "timestamp": "2026-10-02T12:45:56.311Z",
+        "level": 20
+      },
+      {
+        "timestamp": "2026-10-02T12:45:56.344Z",
+        "level": 21
+      }
+    ]
+  }
+]

@@ -1,0 +1,70 @@
+[
+  {
+    "id": "ALT-1790945142775-177",
+    "binId": "BIN-001",
+    "location": "City Central Square - Main Fountain",
+    "type": "cleaning_recommended",
+    "title": "Cleaning Recommended",
+    "message": "BIN-001 at City Central Square - Main Fountain reached 80%. Recommended to add to upcoming route.",
+    "fillLevel": 80,
+    "time": "2026-10-02T12:45:42.775Z",
+    "priority": "medium",
+    "read": false,
+    "resolved": false
+  },
+  {
+    "id": "ALT-1790916198183-27",
+    "binId": "BIN-006",
+    "location": "Botanical Garden - East Pavilion",
+    "type": "cleaning_overdue",
+    "title": "Cleaning Overdue",
+    "message": "BIN-006 at Botanical Garden - East Pavilion has not been cleaned for 4 days (threshold: 3 days). Risk of bad smell and bacterial buildup.",
+    "fillLevel": 42,
+    "time": "2026-10-02T04:43:18.183Z",
+    "priority": "high",
+    "read": true,
+    "resolved": true,
+    "resolvedAt": "2026-10-02T05:10:09.736Z"
+  },
+  {
+    "id": "ALT-1790916198183-885",
+    "binId": "BIN-005",
+    "location": "City General Hospital - Emergency Walkway",
+    "type": "full",
+    "title": "Bin Full – Immediate Cleaning Required",
+    "message": "BIN-005 at City General Hospital - Emergency Walkway is at 100% capacity. Immediate dispatch required to prevent overflow.",
+    "fillLevel": 100,
+    "time": "2026-10-02T04:43:18.183Z",
+    "priority": "urgent",
+    "read": true,
+    "resolved": true,
+    "resolvedAt": "2026-10-02T12:44:59.739Z"
+  },
+  {
+    "id": "ALT-1790916198183-681",
+    "binId": "BIN-004",
+    "location": "Central Vegetable & Fruit Bazaar",
+    "type": "almost_full",
+    "title": "Bin Almost Full",
+    "message": "BIN-004 at Central Vegetable & Fruit Bazaar has reached 94%. Schedule collection soon.",
+    "fillLevel": 94,
+    "time": "2026-10-02T04:43:18.183Z",
+    "priority": "high",
+    "read": true,
+    "resolved": true,
+    "resolvedAt": "2026-10-02T05:10:33.752Z"
+  },
+  {
+    "id": "ALT-1790916198182-495",
+    "binId": "BIN-003",
+    "location": "Metro Station North Exit - Bus Interchange",
+    "type": "cleaning_recommended",
+    "title": "Cleaning Recommended",
+    "message": "BIN-003 at Metro Station North Exit - Bus Interchange reached 82%. Recommended to add to upcoming route.",
+    "fillLevel": 82,
+    "time": "2026-10-02T04:43:18.182Z",
+    "priority": "medium",
+    "read": false,
+    "resolved": false
+  }
+]

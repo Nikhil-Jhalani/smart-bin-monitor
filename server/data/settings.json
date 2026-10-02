@@ -1,0 +1,8 @@
+{
+  "overdueDaysThreshold": 3,
+  "recommendedLevelThreshold": 80,
+  "almostFullLevelThreshold": 90,
+  "fullLevelThreshold": 100,
+  "alertSoundEnabled": true,
+  "autoRefreshIntervalSec": 15
+}
