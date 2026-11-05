@@ -1,0 +1,49 @@
+Hello respected judges and organizers!
+Welcome to the presentation of SmartBin Monitor — an intelligent, IoT-ready municipal waste management platform.
+
+[[slnc 1200]]
+Today, municipal waste collection relies on blind, fixed schedules. Sanitation trucks drive the exact same routes every single day, regardless of whether public bins are empty or dangerously overflowing. This results in wasted fuel, higher carbon emissions, bad odor, and litter spilling onto our streets.
+
+[[slnc 1200]]
+SmartBin Monitor solves this problem by providing a real-time, data-driven system that monitors public dustbins and dynamically guides sanitation teams.
+
+[[slnc 1500]]
+Looking at the municipal dashboard, city administrators get an instant overview of all public bins across the city.
+We follow a clear four-color operational standard:
+Green indicates normal, safe fill levels.
+Yellow indicates partially full bins between 40 and 79 percent capacity.
+Red indicates full or urgent bins that require prompt collection.
+And Orange indicates bins where cleaning is overdue for more than three days, preventing odor and bacterial buildup.
+
+[[slnc 1200]]
+Below, the Priority Dispatch Queue highlights bins requiring immediate attention, allowing cleaning crews to respond without delay.
+
+[[slnc 1500]]
+Now, let us navigate to the Live City Map.
+Built using Leaflet GIS and OpenStreetMap, the map displays every dustbin at its exact geographic GPS coordinates, without requiring expensive proprietary mapping licenses.
+Bins approaching overflow feature a pulsing red animation to immediately alert field operators.
+Clicking any marker displays the bin ID, location, live fill level, and a direct action to mark the bin as cleaned.
+
+[[slnc 1500]]
+Next, let us explore the Demo and Simulation Center.
+To demonstrate real-time responsiveness before physical sensors are deployed in the field, we built an interactive simulation engine.
+Notice Bin 001, which is currently at 25 percent.
+As trash accumulates and the fill level rises to 94 percent,
+[[slnc 800]]
+the system automatically triggers an urgent alert in the Alerts Center.
+When the sanitation crew arrives and marks the bin as cleaned, the fill level instantly resets to zero percent, and the active alert is automatically resolved.
+
+[[slnc 1500]]
+Moving to the Cleaning History tab,
+every service event is logged with full accountability, including the crew identifier, timestamp, and pre-cleaning fill level.
+By eliminating unnecessary trips to empty bins, the platform actively tracks environmental sustainability metrics, such as liters of fuel saved and kilograms of carbon dioxide prevented.
+
+[[slnc 1500]]
+Finally, SmartBin Monitor is fully ready for physical hardware integration.
+Under the Hardware API tab, we provide a production-ready REST telemetry endpoint designed for ESP32 microcontrollers and ultrasonic sensors.
+With our built-in tester, simulated telemetry packets can be transmitted, returning instant HTTP 200 acknowledgments from the backend.
+A complete, ready-to-flash Arduino C plus plus firmware sketch is already included in the project repository.
+
+[[slnc 1200]]
+In summary, SmartBin Monitor combines modern web technologies, geospatial mapping, and IoT telemetry to create cleaner, greener, and smarter cities.
+Thank you very much, judges and team SEWA, for your time and consideration!

@@ -1,49 +1,29 @@
 [
   {
-    "id": "CLN-1790945100604-283",
-    "binId": "BIN-005",
-    "location": "City General Hospital - Emergency Walkway",
-    "cleanedAt": "2026-10-02T12:45:00.604Z",
+    "id": "CLN-1793465929409-692",
+    "binId": "BIN-001",
+    "location": "City Central Square - Main Fountain",
+    "cleanedAt": "2026-10-31T16:58:49.409Z",
     "cleanedBy": "Sanitation Route Crew Alpha",
-    "previousFillLevel": 0,
+    "previousFillLevel": 86,
     "notes": "Emptied and disinfected via SmartBin Portal",
-    "durationMinutes": 5
+    "durationMinutes": 8
   },
   {
-    "id": "CLN-1790945099739-162",
-    "binId": "BIN-005",
-    "location": "City General Hospital - Emergency Walkway",
-    "cleanedAt": "2026-10-02T12:44:59.739Z",
-    "cleanedBy": "Sanitation Route Crew Alpha",
-    "previousFillLevel": 100,
-    "notes": "Emptied and disinfected via SmartBin Portal",
-    "durationMinutes": 9
-  },
-  {
-    "id": "CLN-1790917833753-464",
+    "id": "CLN-1793465902359-206",
     "binId": "BIN-004",
     "location": "Central Vegetable & Fruit Bazaar",
-    "cleanedAt": "2026-10-02T05:10:33.752Z",
+    "cleanedAt": "2026-10-31T16:58:22.359Z",
     "cleanedBy": "Sanitation Route Crew Alpha",
     "previousFillLevel": 94,
     "notes": "Emptied and disinfected via SmartBin Portal",
-    "durationMinutes": 5
-  },
-  {
-    "id": "CLN-1790917809736-358",
-    "binId": "BIN-006",
-    "location": "Botanical Garden - East Pavilion",
-    "cleanedAt": "2026-10-02T05:10:09.736Z",
-    "cleanedBy": "Sanitation Route Crew Alpha",
-    "previousFillLevel": 42,
-    "notes": "Emptied and disinfected via SmartBin Portal",
-    "durationMinutes": 6
+    "durationMinutes": 8
   },
   {
     "id": "CLN-001",
     "binId": "BIN-008",
     "location": "Heritage Art Promenade - South Lane",
-    "cleanedAt": "2026-10-02T01:43:17.519Z",
+    "cleanedAt": "2026-10-31T10:44:01.621Z",
     "cleanedBy": "Sanitation Team Gamma - Route 1",
     "previousFillLevel": 95,
     "notes": "Regular morning round. Bin power-washed and QR sticker inspected.",
@@ -53,7 +33,7 @@
     "id": "CLN-002",
     "binId": "BIN-007",
     "location": "Sports Stadium - Ticket Counter 3",
-    "cleanedAt": "2026-10-01T18:43:17.519Z",
+    "cleanedAt": "2026-10-31T03:44:01.621Z",
     "cleanedBy": "Sanitation Team Alpha - Route 4",
     "previousFillLevel": 88,
     "notes": "Post-match clearance round.",
@@ -63,7 +43,7 @@
     "id": "CLN-003",
     "binId": "BIN-001",
     "location": "City Central Square - Main Fountain",
-    "cleanedAt": "2026-10-01T10:43:17.519Z",
+    "cleanedAt": "2026-10-30T19:44:01.621Z",
     "cleanedBy": "Sanitation Team Beta - Route 2",
     "previousFillLevel": 92,
     "notes": "Nightly sanitization shift.",

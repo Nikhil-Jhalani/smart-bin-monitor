@@ -46,11 +46,17 @@ app.use('/api/demo', demoRouter);
 app.use('/api/stats', statsRouter);
 app.use('/api/settings', settingsRouter);
 
+// Serve voiceover player & audio files
+const VOICEOVER_DIR = path.join(__dirname, '..', 'voiceover');
+if (fs.existsSync(VOICEOVER_DIR)) {
+  app.use('/voiceover', express.static(VOICEOVER_DIR));
+}
+
 // Serve static frontend files in Express 5
 if (fs.existsSync(DIST_DIR)) {
   app.use(express.static(DIST_DIR));
   app.use((req, res, next) => {
-    if (req.method === 'GET' && !req.path.startsWith('/api')) {
+    if (req.method === 'GET' && !req.path.startsWith('/api') && !req.path.startsWith('/voiceover')) {
       return res.sendFile(path.join(DIST_DIR, 'index.html'));
     }
     next();

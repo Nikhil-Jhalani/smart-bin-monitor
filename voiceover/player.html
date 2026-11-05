@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartBin Video Voiceover Player & Teleprompter</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .cue-active {
+      border-color: #10b981 !important;
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(6, 78, 59, 0.04)) !important;
+      transform: scale(1.01);
+      box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.15);
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col antialiased selection:bg-emerald-500 selection:text-white">
+
+  <!-- Header & Sticky Audio Bar -->
+  <header class="sticky top-0 z-30 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 shadow-xl">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex flex-col md:flex-row items-center justify-between gap-3">
+      
+      <!-- Brand & Title -->
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 font-bold">
+          🎙️
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-sm font-extrabold text-white tracking-tight">SmartBin Teleprompter & Voiceover</h1>
+            <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 uppercase">SEWA Hackathon</span>
+          </div>
+          <p class="text-[11px] text-slate-400">Play in background while recording your screen demo</p>
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <div class="flex items-center gap-2.5 flex-wrap justify-center">
+        <!-- Voice Selector -->
+        <select id="voiceSelect" class="bg-slate-800 text-xs text-slate-200 border border-slate-700 rounded-lg px-2.5 py-1.5 font-medium focus:outline-none focus:border-emerald-500">
+          <option value="smartbin_voiceover_indian.m4a">🇮🇳 Indian English (Rishi)</option>
+          <option value="smartbin_voiceover_us.m4a">🇺🇸 US English (Samantha)</option>
+        </select>
+
+        <!-- Speed selector -->
+        <select id="speedSelect" class="bg-slate-800 text-xs text-slate-200 border border-slate-700 rounded-lg px-2 py-1.5 font-mono focus:outline-none focus:border-emerald-500">
+          <option value="1">1.0x</option>
+          <option value="1.05">1.05x</option>
+          <option value="1.1" selected>1.1x (Recommended)</option>
+          <option value="1.15">1.15x</option>
+          <option value="1.25">1.25x</option>
+        </select>
+
+        <!-- Play/Pause Button -->
+        <button id="playBtn" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-4 py-1.5 rounded-lg flex items-center gap-1.5 shadow-md shadow-emerald-950/40 transition active:scale-95">
+          <span id="playIcon">▶</span>
+          <span id="playText">Play Voice</span>
+        </button>
+
+        <!-- Time tracker -->
+        <div class="mono text-xs text-emerald-400 bg-slate-950/80 px-2.5 py-1 rounded-md border border-slate-800 min-w-[75px] text-center">
+          <span id="timeDisplay">0:00</span>
+        </div>
+
+        <a href="http://localhost:5001" target="_blank" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold px-3 py-1.5 rounded-lg border border-slate-700 transition flex items-center gap-1">
+          Open App ↗
+        </a>
+      </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="w-full bg-slate-800 h-1 cursor-pointer" id="progressContainer">
+      <div id="progressBar" class="bg-emerald-500 h-1 transition-all duration-100" style="width: 0%"></div>
+    </div>
+  </header>
+
+  <!-- Audio Element -->
+  <audio id="audioPlayer" preload="auto">
+    <source src="smartbin_voiceover_indian.m4a" type="audio/mp4">
+    <source src="smartbin_voiceover_indian.wav" type="audio/wav">
+  </audio>
+
+  <!-- Main Teleprompter Content -->
+  <main class="max-w-4xl mx-auto px-4 py-6 w-full flex-1 space-y-4">
+
+    <!-- Instructions Banner -->
+    <div class="bg-linear-to-r from-emerald-950/60 to-slate-900 border border-emerald-800/40 rounded-2xl p-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 text-xs text-slate-300">
+      <div>
+        <p class="font-bold text-white text-sm mb-0.5">🎥 How to Record Your Screen with this Voiceover:</p>
+        <p class="text-slate-400">1. Open <a href="http://localhost:5001" target="_blank" class="text-emerald-400 underline font-medium">http://localhost:5001</a> in another browser window.<br>
+           2. Start your screen recorder (QuickTime, OBS, or Loom).<br>
+           3. Click <strong class="text-white">Play Voice</strong> here (or press Spacebar) and perform each action on your screen as the cue highlights below!</p>
+      </div>
+      <div class="flex items-center gap-2 shrink-0">
+        <span class="px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-300 border border-amber-500/20 font-medium">Tip: Press Spacebar to Play/Pause</span>
+      </div>
+    </div>
+
+    <!-- Cues Container -->
+    <div id="cuesList" class="space-y-3.5">
+
+      <!-- Scene 1 -->
+      <div class="cue-card p-4 rounded-xl border border-slate-800 bg-slate-900/60 transition-all duration-300 cursor-pointer" data-start="0" data-end="35">
+        <div class="flex items-center justify-between text-xs mb-2">
+          <span class="font-mono font-bold text-emerald-400 px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">Scene 1 • 0:00 – 0:35</span>
+          <span class="text-slate-400 uppercase tracking-wider font-bold text-[10px] bg-slate-800 px-2 py-0.5 rounded">Introduction & Problem</span>
+        </div>
+        <div class="bg-slate-950/60 p-2.5 rounded-lg border border-slate-800/70 mb-2.5 text-xs text-amber-200 font-semibold flex items-center gap-2">
+          <span>🖥️ WHAT TO SHOW:</span>
+          <span>Open Dashboard home page (<a href="http://localhost:5001" target="_blank" class="underline">http://localhost:5001</a>). Keep mouse still or gentle overview.</span>
+        </div>
+        <p class="text-sm text-slate-300 leading-relaxed">
+          "Hello respected judges and organizers! Welcome to the presentation of SmartBin Monitor — an intelligent, IoT-ready municipal waste management platform. Today, municipal waste collection relies on blind, fixed schedules. Sanitation trucks drive the exact same routes every single day, regardless of whether public bins are empty or dangerously overflowing. This results in wasted fuel, higher carbon emissions, bad odor, and litter spilling onto our streets. SmartBin Monitor solves this problem by providing a real-time, data-driven system that monitors public dustbins and dynamically guides sanitation teams."
+        </p>
+      </div>
+
+      <!-- Scene 2 -->
+      <div class="cue-card p-4 rounded-xl border border-slate-800 bg-slate-900/60 transition-all duration-300 cursor-pointer" data-start="35" data-end="76">
+        <div class="flex items-center justify-between text-xs mb-2">
+          <span class="font-mono font-bold text-emerald-400 px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">Scene 2 • 0:35 – 1:16</span>
+          <span class="text-slate-400 uppercase tracking-wider font-bold text-[10px] bg-slate-800 px-2 py-0.5 rounded">Dashboard & 4 Status Standard</span>
+        </div>
+        <div class="bg-slate-950/60 p-2.5 rounded-lg border border-slate-800/70 mb-2.5 text-xs text-amber-200 font-semibold flex items-center gap-2">
+          <span>🖥️ WHAT TO SHOW:</span>
+          <span>Point cursor at the 6 KPI cards (Green, Yellow, Red, Orange), then scroll down to Priority Dispatch Queue.</span>
+        </div>
+        <p class="text-sm text-slate-300 leading-relaxed">
+          "Looking at the municipal dashboard, city administrators get an instant overview of all public bins across the city. We follow a clear four-color operational standard: Green indicates normal, safe fill levels. Yellow indicates partially full bins between 40 and 79 percent capacity. Red indicates full or urgent bins that require prompt collection. And Orange indicates bins where cleaning is overdue for more than three days, preventing odor and bacterial buildup. Below, the Priority Dispatch Queue highlights bins requiring immediate attention, allowing cleaning crews to respond without delay."
+        </p>
+      </div>
+
+      <!-- Scene 3 -->
+      <div class="cue-card p-4 rounded-xl border border-slate-800 bg-slate-900/60 transition-all duration-300 cursor-pointer" data-start="76" data-end="116">
+        <div class="flex items-center justify-between text-xs mb-2">
+          <span class="font-mono font-bold text-emerald-400 px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">Scene 3 • 1:16 – 1:56</span>
+          <span class="text-slate-400 uppercase tracking-wider font-bold text-[10px] bg-slate-800 px-2 py-0.5 rounded">Live Geospatial City Map</span>
+        </div>
+        <div class="bg-slate-950/60 p-2.5 rounded-lg border border-slate-800/70 mb-2.5 text-xs text-amber-200 font-semibold flex items-center gap-2">
+          <span>🖥️ WHAT TO SHOW:</span>
+          <span>Click sidebar "Live City Map". Zoom in slightly. Click a pulsing RED marker to open the popup details.</span>
+        </div>
+        <p class="text-sm text-slate-300 leading-relaxed">
+          "Now, let us navigate to the Live City Map. Built using Leaflet GIS and OpenStreetMap, the map displays every dustbin at its exact geographic GPS coordinates, without requiring expensive proprietary mapping licenses. Bins approaching overflow feature a pulsing red animation to immediately alert field operators. Clicking any marker displays the bin ID, location, live fill level, and a direct action to mark the bin as cleaned."
+        </p>
+      </div>
+
+      <!-- Scene 4 -->
+      <div class="cue-card p-4 rounded-xl border border-slate-800 bg-slate-900/60 transition-all duration-300 cursor-pointer" data-start="116" data-end="160">
+        <div class="flex items-center justify-between text-xs mb-2">
+          <span class="font-mono font-bold text-emerald-400 px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">Scene 4 • 1:56 – 2:40</span>
+          <span class="text-slate-400 uppercase tracking-wider font-bold text-[10px] bg-slate-800 px-2 py-0.5 rounded">Live Simulation & Instant Alerts</span>
+        </div>
+        <div class="bg-slate-950/60 p-2.5 rounded-lg border border-slate-800/70 mb-2.5 text-xs text-amber-200 font-semibold flex items-center gap-2">
+          <span>🖥️ WHAT TO SHOW:</span>
+          <span>Click "Demo & Simulation". Drag BIN-001 slider to 94%. Click "Alerts Center". Click "Clean Bin Now".</span>
+        </div>
+        <p class="text-sm text-slate-300 leading-relaxed">
+          "Next, let us explore the Demo and Simulation Center. To demonstrate real-time responsiveness before physical sensors are deployed in the field, we built an interactive simulation engine. Notice Bin 001, which is currently at 25 percent. As trash accumulates and the fill level rises to 94 percent, the system automatically triggers an urgent alert in the Alerts Center. When the sanitation crew arrives and marks the bin as cleaned, the fill level instantly resets to zero percent, and the active alert is automatically resolved."
+        </p>
+      </div>
+
+      <!-- Scene 5 -->
+      <div class="cue-card p-4 rounded-xl border border-slate-800 bg-slate-900/60 transition-all duration-300 cursor-pointer" data-start="160" data-end="190">
+        <div class="flex items-center justify-between text-xs mb-2">
+          <span class="font-mono font-bold text-emerald-400 px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">Scene 5 • 2:40 – 3:10</span>
+          <span class="text-slate-400 uppercase tracking-wider font-bold text-[10px] bg-slate-800 px-2 py-0.5 rounded">Cleaning Logs & Fuel Savings</span>
+        </div>
+        <div class="bg-slate-950/60 p-2.5 rounded-lg border border-slate-800/70 mb-2.5 text-xs text-amber-200 font-semibold flex items-center gap-2">
+          <span>🖥️ WHAT TO SHOW:</span>
+          <span>Click "Cleaning History". Hover over "Fuel Saved" and "CO2 Avoided" cards, then scroll audit table.</span>
+        </div>
+        <p class="text-sm text-slate-300 leading-relaxed">
+          "Moving to the Cleaning History tab, every service event is logged with full accountability, including the crew identifier, timestamp, and pre-cleaning fill level. By eliminating unnecessary trips to empty bins, the platform actively tracks environmental sustainability metrics, such as liters of fuel saved and kilograms of carbon dioxide prevented."
+        </p>
+      </div>
+
+      <!-- Scene 6 -->
+      <div class="cue-card p-4 rounded-xl border border-slate-800 bg-slate-900/60 transition-all duration-300 cursor-pointer" data-start="190" data-end="225">
+        <div class="flex items-center justify-between text-xs mb-2">
+          <span class="font-mono font-bold text-emerald-400 px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">Scene 6 • 3:10 – 3:45</span>
+          <span class="text-slate-400 uppercase tracking-wider font-bold text-[10px] bg-slate-800 px-2 py-0.5 rounded">ESP32 Hardware Readiness</span>
+        </div>
+        <div class="bg-slate-950/60 p-2.5 rounded-lg border border-slate-800/70 mb-2.5 text-xs text-amber-200 font-semibold flex items-center gap-2">
+          <span>🖥️ WHAT TO SHOW:</span>
+          <span>Click "ESP32 Hardware API". Click "Transmit ESP32 Telemetry" button (shows green 200 OK box). Scroll to code.</span>
+        </div>
+        <p class="text-sm text-slate-300 leading-relaxed">
+          "Finally, SmartBin Monitor is fully ready for physical hardware integration. Under the Hardware API tab, we provide a production-ready REST telemetry endpoint designed for ESP32 microcontrollers and ultrasonic sensors. With our built-in tester, simulated telemetry packets can be transmitted, returning instant HTTP 200 acknowledgments from the backend. A complete, ready-to-flash Arduino C plus plus firmware sketch is already included in the project repository."
+        </p>
+      </div>
+
+      <!-- Scene 7 -->
+      <div class="cue-card p-4 rounded-xl border border-slate-800 bg-slate-900/60 transition-all duration-300 cursor-pointer" data-start="225" data-end="240">
+        <div class="flex items-center justify-between text-xs mb-2">
+          <span class="font-mono font-bold text-emerald-400 px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">Scene 7 • 3:45 – End</span>
+          <span class="text-slate-400 uppercase tracking-wider font-bold text-[10px] bg-slate-800 px-2 py-0.5 rounded">Conclusion & Thank You</span>
+        </div>
+        <div class="bg-slate-950/60 p-2.5 rounded-lg border border-slate-800/70 mb-2.5 text-xs text-amber-200 font-semibold flex items-center gap-2">
+          <span>🖥️ WHAT TO SHOW:</span>
+          <span>Click back to "Dashboard" view. Let the screen rest cleanly on the full municipal dashboard.</span>
+        </div>
+        <p class="text-sm text-slate-300 leading-relaxed">
+          "In summary, SmartBin Monitor combines modern web technologies, geospatial mapping, and IoT telemetry to create cleaner, greener, and smarter cities. Thank you very much, judges and team SEWA, for your time and consideration!"
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Direct Audio File Links -->
+    <div class="pt-6 border-t border-slate-800 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-400">
+      <span>Audio Files on Disk: <code class="mono text-slate-300">/smart-bin-monitor/voiceover/</code></span>
+      <div class="flex gap-2">
+        <a href="smartbin_voiceover_indian.m4a" download class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 font-mono transition">⬇ Download Indian English (.m4a)</a>
+        <a href="smartbin_voiceover_us.m4a" download class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 font-mono transition">⬇ Download US English (.m4a)</a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const audio = document.getElementById('audioPlayer');
+    const playBtn = document.getElementById('playBtn');
+    const playIcon = document.getElementById('playIcon');
+    const playText = document.getElementById('playText');
+    const voiceSelect = document.getElementById('voiceSelect');
+    const speedSelect = document.getElementById('speedSelect');
+    const timeDisplay = document.getElementById('timeDisplay');
+    const progressBar = document.getElementById('progressBar');
+    const progressContainer = document.getElementById('progressContainer');
+    const cueCards = document.querySelectorAll('.cue-card');
+
+    // Default speed
+    audio.playbackRate = parseFloat(speedSelect.value);
+
+    // Toggle play
+    function togglePlay() {
+      if (audio.paused) {
+        audio.play();
+        playIcon.textContent = '⏸';
+        playText.textContent = 'Pause';
+        playBtn.classList.replace('bg-emerald-600', 'bg-amber-600');
+        playBtn.classList.replace('hover:bg-emerald-500', 'hover:bg-amber-500');
+      } else {
+        audio.pause();
+        playIcon.textContent = '▶';
+        playText.textContent = 'Play Voice';
+        playBtn.classList.replace('bg-amber-600', 'bg-emerald-600');
+        playBtn.classList.replace('hover:bg-amber-500', 'hover:bg-emerald-500');
+      }
+    }
+
+    playBtn.addEventListener('click', togglePlay);
+
+    // Keyboard Spacebar
+    window.addEventListener('keydown', (e) => {
+      if (e.code === 'Space' && e.target.tagName !== 'SELECT' && e.target.tagName !== 'INPUT') {
+        e.preventDefault();
+        togglePlay();
+      }
+    });
+
+    // Voice change
+    voiceSelect.addEventListener('change', () => {
+      const wasPlaying = !audio.paused;
+      const currTime = audio.currentTime;
+      audio.src = voiceSelect.value;
+      audio.playbackRate = parseFloat(speedSelect.value);
+      audio.currentTime = currTime;
+      if (wasPlaying) audio.play();
+    });
+
+    // Speed change
+    speedSelect.addEventListener('change', () => {
+      audio.playbackRate = parseFloat(speedSelect.value);
+    });
+
+    // Format time
+    function formatTime(sec) {
+      const m = Math.floor(sec / 60);
+      const s = Math.floor(sec % 60);
+      return `${m}:${s < 10 ? '0' : ''}${s}`;
+    }
+
+    // Time update & Cue highlight
+    audio.addEventListener('timeupdate', () => {
+      const current = audio.currentTime;
+      const duration = audio.duration || 1;
+      timeDisplay.textContent = formatTime(current);
+      progressBar.style.width = `${(current / duration) * 100}%`;
+
+      // Check which cue is active (scale factor for Samantha/Rishi differences)
+      cueCards.forEach(card => {
+        const start = parseFloat(card.dataset.start);
+        const end = parseFloat(card.dataset.end);
+        if (current >= start && current < end) {
+          if (!card.classList.contains('cue-active')) {
+            cueCards.forEach(c => c.classList.remove('cue-active'));
+            card.classList.add('cue-active');
+            card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }
+        }
+      });
+    });
+
+    // Seek by clicking progress bar
+    progressContainer.addEventListener('click', (e) => {
+      const rect = progressContainer.getBoundingClientRect();
+      const clickRatio = (e.clientX - rect.left) / rect.width;
+      audio.currentTime = clickRatio * audio.duration;
+    });
+
+    // Click cue card to jump
+    cueCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const start = parseFloat(card.dataset.start);
+        audio.currentTime = start;
+        if (audio.paused) togglePlay();
+      });
+    });
+
+    audio.addEventListener('ended', () => {
+      playIcon.textContent = '▶';
+      playText.textContent = 'Replay';
+      playBtn.classList.replace('bg-amber-600', 'bg-emerald-600');
+    });
+  </script>
+</body>
+</html>
